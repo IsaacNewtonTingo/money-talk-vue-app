@@ -10,7 +10,12 @@
         <div class="item">
           <label for="">Full name *</label>
           <div class="inputAndIcon">
-            <input v-model="fullName" placeholder="e.g John Doe" type="text" />
+            <input
+              required
+              v-model="fullName"
+              placeholder="e.g John Doe"
+              type="text"
+            />
           </div>
         </div>
 
@@ -18,6 +23,7 @@
           <label for="">Phone number *</label>
           <div class="inputAndIcon">
             <input
+              required
               v-model="phoneNumber"
               placeholder="e.g 0724657897"
               type="tel"
@@ -28,11 +34,24 @@
         <div class="item">
           <label for="">Amount</label>
           <div class="inputAndIcon">
-            <input v-model="amount" placeholder="e.g 200" type="number" />
+            <input
+              required
+              v-model="amount"
+              placeholder="e.g 200"
+              type="number"
+            />
           </div>
         </div>
 
-        <button :disabled="isPosting">Pay now</button>
+        <button :disabled="isPosting">
+          <img
+            v-if="isPosting"
+            src="../assets/loading.gif"
+            alt=""
+            class="loadingGif"
+          />
+          <div v-else>Pay now</div>
+        </button>
       </form>
 
       <div class="records">
@@ -41,6 +60,7 @@
 
           <div class="details">
             <div class="tit">
+              <p class="amountText">Phone number</p>
               <p class="amountText">Amount</p>
               <p class="amountText">Code</p>
             </div>
@@ -48,9 +68,11 @@
             <div class="arrows">
               <p class="arrowItem">=></p>
               <p class="arrowItem">=></p>
+              <p class="arrowItem">=></p>
             </div>
 
             <div class="det">
+              <p class="ksh">254724753175</p>
               <p class="ksh">KSH. 200</p>
               <p class="ksh">QJ67TFF6G0</p>
             </div>
@@ -202,16 +224,24 @@ form {
   text-align: center;
 }
 
+.item {
+  width: 100%;
+}
+
 input {
   height: 50px;
+  width: 100%;
   border-radius: 10px;
-  width: 300px;
   margin: 10px 0;
   border: none;
   background: rgba(81, 58, 89, 0.23);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-  padding: 0 0 0 40px;
+  padding: 0 40px;
   color: #c0e1ff;
+
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
 }
 button {
   width: 100%;
@@ -265,5 +295,8 @@ label {
 .ksh {
   color: #c0e1ff;
   font-size: 12px;
+}
+.loadingGif {
+  width: 30px;
 }
 </style>
